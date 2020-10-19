@@ -19,7 +19,7 @@ const getUsers = async (req, res) => {
         var sql = "INSERT INTO users (first_name, last_name, email, avatar) VALUES " + values;
         con.query(sql, function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            console.log("inserted");
         });
 
         res.status(200).send({
