@@ -8,8 +8,6 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     (async function() {
         const result = await home.fetchUsers();
-        
-        console.log(result);
         res.render('home', {users:result});
     })();
 });
