@@ -1,5 +1,6 @@
 const con = require('../db/mysql');
 const axios = require('axios');
+const puppeteer = require('puppeteer');
 
 const getUsers = async (req, res) => {
     try {
@@ -43,4 +44,14 @@ const fetchUsers = async (page) => {
     return resp.data;
 }
 
-module.exports = { getUsers };
+const fetchDataFromWebsite = async (req, res) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://develop.pub.afflu.net');
+    await page.screenshot({ path: 'example.png' });
+
+    await browser.close();
+
+}
+
+module.exports = { getUsers, fetchDataFromWebsite };
