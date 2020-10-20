@@ -58,7 +58,14 @@ const fetchDataFromWebsite = async (req, res) => {
             page.waitForNavigation({ waitUntil: 'networkidle0' }),
         ]);
 
+        // await page.screenshot({ path: 'example.png' });
+
         await browser.close();
+
+        res.status(200).send({
+            status: 200,
+            message: 'Login Success'
+        });
     }
     catch (e) {
         console.log(e)
