@@ -45,12 +45,25 @@ const fetchUsers = async (page) => {
 }
 
 const fetchDataFromWebsite = async (req, res) => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto('https://develop.pub.afflu.net');
-    await page.screenshot({ path: 'example.png' });
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto('https://develop.pub.afflu.net');
 
-    await browser.close();
+        await page.type('body > div.content > form.login-form > div:nth-child(2) > input', 'developertest@affluent.io');
+        await page.type('body > div.content > form.login-form > div:nth-child(3) > input', 'SOpcR^37');
+
+        await Promise.all([
+            await page.click('body > div.content > form.login-form > div.form-actions > button'),
+            page.waitForNavigation({ waitUntil: 'networkidle0' }),
+        ]);
+
+        await browser.close();
+    }
+    catch (e) {
+        console.log(e)
+        res.status(400).send({ error: e });
+    }
 
 }
 
