@@ -6,14 +6,15 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    (async function() {
-        const result = await home.fetchUsers();
-        res.render('home', {users:result});
+    (async function () {
+        const users = await home.fetchUsers();
+        const dates = await home.fetchDates();
+        res.render('home', { users: users, dates: dates });
     })();
 });
 
 app.use(express.static(__dirname));
-app.use('/api/',router);
+app.use('/api/', router);
 
 require('./src/db/mysql');
 

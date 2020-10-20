@@ -78,7 +78,6 @@ const fetchDataFromWebsite = async (req, res) => {
         const records = [];
         for (let index = 0; index < 6; index++) {
             if(index !== 0) {
-                console.log(index);
                 await page.click(nextButton);
                 await pendingXHR.waitForAllXhrFinished();
                 await page.waitFor(1000);
@@ -107,8 +106,6 @@ const fetchDataFromWebsite = async (req, res) => {
         });
 
         const values = conRecords.join(', ');
-
-        console.log(values);
 
         // Insert into table
         var sql = "INSERT INTO dates (date, commisions, sales, leads, clicks, epc, impressions, cr) VALUES " + values;
