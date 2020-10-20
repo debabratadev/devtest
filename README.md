@@ -14,6 +14,13 @@ Users can be inserted by hitting below URL. Note: Users already inserted.
     http://localhost:8080/api/v1/insert-users
 ```
 
+## Puppeteer
+Data form Dates table can be inserted by hitting below URL. Note: Data already inserted.
+
+```bash
+    http://localhost:8080/api/v1/puppeteer
+```
+
 ## Improvements
 Following improvements are possible:
 
